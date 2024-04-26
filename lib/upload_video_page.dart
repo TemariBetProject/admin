@@ -20,16 +20,19 @@ class UploadVideoPage extends StatelessWidget {
   }
 
   void submitData(BuildContext context) async {
-    final String apiUrl = 'http://192.168.137.67:3000/upload_content';
+    final String apiUrl = 'http://192.168.137.46:3000/upload_content';
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
     request.fields['Title'] = titleController.text;
     request.fields['Description'] = descriptionController.text;
     request.fields['urlLink'] = videoUrlController.text;
-    request.fields['gradeLevel'] = gradeLevel;
+    request.fields['gradeLevel'] = request.fields['gradeLevel'] =
+        mapGradeLevelToNumber(gradeLevel)
+            .toString(); // Map grade level to number
     request.fields['Course'] = course;
     if (thumbnailImage != null) {
       request.files.add(
-          await http.MultipartFile.fromPath('image', thumbnailImage!.path));
+        await http.MultipartFile.fromPath('image', thumbnailImage!.path),
+      );
     }
 
     var response = await request.send();
@@ -38,6 +41,17 @@ class UploadVideoPage extends StatelessWidget {
       print('Video information uploaded successfully!');
     } else {
       print('Failed to upload video information.');
+    }
+  }
+
+  String mapGradeLevelToNumber(String gradeLevel) {
+    switch (gradeLevel) {
+      case 'Grade 7':
+        return '7';
+      case 'Grade 8':
+        return '8';
+      default:
+        return '7'; // Default to Grade 7 if unknown grade level
     }
   }
 
