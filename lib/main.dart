@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'admin_screen.dart'; // Import the admin screen
+import 'upload_video_page.dart'; // Importing the upload_video_page.dart file
 
 void main() {
   runApp(MyApp());
@@ -9,12 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Admin App',
+      title: 'eLearning Admin App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AdminScreen(), // Set the AdminScreen as the home screen
+      home: UploadVideoPage(), // Using UploadVideoPage as the home page
     );
   }
 }
