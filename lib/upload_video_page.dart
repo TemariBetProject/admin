@@ -20,7 +20,7 @@ class UploadVideoPage extends StatelessWidget {
   }
 
   void submitData(BuildContext context) async {
-    final String apiUrl = 'http://192.168.137.18:3000/upload_content';
+    final String apiUrl = 'http://192.168.137.67:3000/upload_content';
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
     request.fields['Title'] = titleController.text;
     request.fields['Description'] = descriptionController.text;
